@@ -122,6 +122,36 @@ for x in act_comps:
                     oac.stop_analytics_instance(oa.id)
                     print("             Stopping OAC Instance",oa.name)
         ################ OAC INSTANCES #########################################
+        
+        ################ DB SYSTEMS  ###########################################
+        print("     ####### Executing DB System AutoStop Script #######")
+        db_client = oci.database.DatabaseClient(config)
+        db_systems = db_client.list_db_systems(x.id,lifecycle_state='AVAILABLE').data
+        if len(db_systems)>0:
+            for db_system in db_systems:
+                #print("The DB System Name is:",db_system.display_name)
+                #print(db_system)
+                if ('AutoScript' in db_system.freeform_tags and db_system.freeform_tags['AutoScript'] == 'No'):
+                    print("SKipping the DB System:",db_system.display_name )
+                    print("\n")
+                else:
+                    db_nodes = db_client.list_db_nodes(x.id,db_system_id=db_system.id,lifecycle_state='AVAILABLE').data
+                    if len(db_nodes)>0:
+                        for db_node in db_nodes:
+                            #print(db_node)
+                            #print(db_node.id)
+                            print("The DB System Name is:",db_system.display_name )
+                            print("     Stopping the Node:",db_node.hostname)
+                            db_client.db_node_action(db_node.id,'STOP')
+                            print("\n")
+                    else:
+                        print("No nodes running in DB Syetem:",db_system.display_name)
+                        print("\n")
+        else:
+            print("No DB systems available in compartment")
+        print("     ####### Completed DB System AutoStop Script #######")
+        print("\n")
+        ################ DB SYSTEMS  ###########################################
 print("\n")
 print(".........................................................................................................")
 print("................................. The Program Ends Here  ................................................")
