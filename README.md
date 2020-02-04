@@ -12,3 +12,9 @@ key_file = '/~path/oci_api_key.pem' # Prvate file for User Authentication
 fingerprint = '' # Finger print of the public key added in user tokens
 ```
 
+##Exclude Options
+
+We can exclude stopping ADB, DB System Nodes and Compute instance using a freeform tag as below.
+
+![alt text](https://github.com/prampradeep/OCI/blob/master/images/Autoscript.PNG)
+
