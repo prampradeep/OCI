@@ -1,7 +1,7 @@
 # OCI
-This script will stop Compute, Autonomous Databases and OAC OCI Native instances (Tokyo only) from all the compartments.
+This script will stop Compute, Autonomous Databases, DB System Nodes and OAC OCI Native instances (Tokyo only) from all the compartments.
 
-Edit the below values as per your tenancy
+Edit the below values as per your tenancy in the [StopScript.py](https://github.com/prampradeep/OCI/blob/master/StopScript.py)
 
 ```
 # Tenancy & User details for Authentication ( Change as needed)
