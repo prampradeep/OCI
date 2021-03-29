@@ -23,7 +23,7 @@ This page contains sample scripts to Start, Stop OCI Cloud instances using OCI P
   
 ## Authenticate with Compute Client 
 
-The below code piece will load the `config` from the default directory and authenticates with OCI using the `oci.analytics.AnalyticsClient` class
+The below code piece will load the `config` from the default directory and authenticates with OCI using the `oci.core.ComputeClient` class
 
   ```
   import oci
